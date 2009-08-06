@@ -1,0 +1,155 @@
+
+
+;; ******************************************************************
+;; **** CEDET and associated tools **********************************
+;; ******************************************************************
+(load-file "~/local/cedet/common/cedet.el")
+
+;; Support for Scala
+;(load-file "~/local/cedet/contrib/semantic-ectag-scala.el")
+
+;; EDE project manager
+(global-ede-mode 1)  
+
+;; Semantic 
+(semantic-load-enable-minimum-features)
+(semantic-load-enable-code-helpers)
+(semantic-load-enable-primary-exuberent-ctags-support)
+
+
+;; SRecode
+(global-srecode-minor-mode 1)
+
+;; ECB
+(add-to-list 'load-path "/home/andrei/local/ecb")
+(require 'ecb)
+
+
+
+
+
+;; ******************************************************************
+;; **** Appearance options ******************************************
+;; ******************************************************************
+
+
+;; turn on font colors
+(global-font-lock-mode t)
+(setq font-lock-maximum-decoration t)
+
+
+;; color-theme 
+(require 'color-theme)
+;(color-theme-parus)
+;(color-theme-deep-blue)
+;(color-theme-kingsajz)
+;(color-theme-hober)
+;(color-theme-robin-hood)
+;(color-theme-sitaramv-solaris)
+
+
+;(eval-after-load "color-theme"
+;  '(progn
+;     (color-theme-initialize)
+;     (color-theme-hober)))
+
+
+
+;; don't blink
+(blink-cursor-mode 0)
+
+
+;; turn on showing of line and column numbers
+(line-number-mode t)
+(column-number-mode t)
+
+;; turn on show-paren mode
+(require 'paren) (show-paren-mode t)
+
+;; set line truncation
+(setq-default truncate-lines t)
+
+;; remove some gui
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+
+;; try to set the frame size
+(setq default-frame-alist '((width . 95) (height . 49) (menu-bar-lines . 1)))
+
+
+
+
+;; ******************************************************************
+;; **** Keys, bindings and behavior *********************************
+;; ******************************************************************
+
+
+;; bind keys
+(global-set-key [(f3)] 'buffer-menu)
+(global-set-key [(f5)] 'comment-region)
+(global-set-key [(f6)] 'uncomment-region)
+(global-set-key [(f9)] 'compile)
+
+;; move between windows by using shift + arrows
+(windmove-default-keybindings)
+
+
+
+
+;; ******************************************************************
+;; **** Language modes **********************************************
+;; ******************************************************************
+
+
+;; ** Scala mode
+(require 'scala-mode-auto)
+
+
+;; ** LaTeX mode: bind F8 to close the current latex block
+(defun set-latex-env ()
+  (global-set-key [(f8)] 'tex-close-latex-block)
+  (global-set-key [(f7)] 'tex-latex-block))
+
+(add-hook 'latex-mode-hook 'set-latex-env)
+
+
+;; ** JavaScript mode
+
+;(autoload 'js2-mode "js2" nil t)
+;(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+
+;; ** Haskell mode
+
+;; load haskell-mode
+;(load "haskell-site-file")
+
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+
+;; load tuareg-mode
+;(setq auto-mode-alist (cons '("\\.ml\\w?" . tuareg-mode) auto-mode-alist))
+;(autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
+;(autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(ecb-options-version "2.40"))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
