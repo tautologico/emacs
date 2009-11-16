@@ -54,6 +54,9 @@
 ;     (color-theme-hober)))
 
 
+;; always use space instead of tabs
+(setq-default indent-tabs-mode nil)
+
 
 ;; don't blink
 (blink-cursor-mode 0)
